@@ -1,3 +1,3 @@
-# Bannerbox documentation
+# Bannerbox blog
 
-www.bannerbox.com/docs
+www.bannerbox.com/blog
