@@ -4,8 +4,17 @@ import { css, Global } from '@emotion/react';
 import Header from 'components/bannerbox-site-shared/Header';
 import Footer from 'components/bannerbox-site-shared/Footer';
 
-function App(appProps: AppProps) {
+import type { MarkdocNextJsPageProps } from '@markdoc/next.js';
+
+function App(appProps: AppProps<MarkdocNextJsPageProps>) {
   const { Component, pageProps } = appProps;
+
+  console.log(
+    {
+      markdoc: pageProps.markdoc,
+    },
+    '---> markdoc info'
+  );
 
   return (
     <>

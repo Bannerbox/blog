@@ -1,5 +1,6 @@
 import { css } from '@emotion/react';
 import SectionPicker from 'components/section-picker/SectionPicker';
+import Post from 'components/post';
 
 const styles = css`
   display: block;
@@ -16,6 +17,8 @@ const HomePage = () => {
       <div className="section-picker">
         <SectionPicker />
       </div>
+
+      <Post />
     </div>
   );
 };
