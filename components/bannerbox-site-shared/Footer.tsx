@@ -69,23 +69,17 @@ const Footer = () => {
           </div>
           <div className="copyright">©{todayDate.getFullYear()} Bannerbox</div>
           <div className="privacy-policy">
-            <a href="/docs/privacy" target="_blank">
-              Privacy Policy
-            </a>
+            <a href="/docs/privacy">Privacy Policy</a>
           </div>
         </div>
         <div css={linkColumnStyles} className="links">
           <div className="column">
             <div className="title">Connect</div>
             <div>
-              <a href="/blog" target="_blank">
-                Blog
-              </a>
+              <a href="/blog">Blog</a>
             </div>
             <div>
-              <a href="/docs" target="_blank">
-                Documentation
-              </a>
+              <a href="/docs">Documentation</a>
             </div>
             <div>
               <address className="contact">

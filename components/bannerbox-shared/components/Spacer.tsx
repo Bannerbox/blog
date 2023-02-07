@@ -6,7 +6,7 @@ type Props = {
   size: Size;
 };
 
-const Spacer: React.FC<Props> = ({ size }) => {
+const Spacer = ({ size }: Props) => {
   return <div style={{ marginTop: size }}></div>;
 };
 
