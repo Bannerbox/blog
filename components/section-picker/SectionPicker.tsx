@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import Router, { useRouter } from 'next/router';
 import { css } from '@emotion/react';
 import { BreakPoints } from 'components/bannerbox-shared/theme/breakpoints';
 import { sectionContainerStyles } from 'components/bannerbox-site-shared/section-container';
@@ -24,21 +25,27 @@ const styles = css`
 
 type TabInfo = {
   title: string;
+  category: string;
 };
 
 const tabInfo: Array<TabInfo> = [
-  { title: 'View All' },
-  { title: 'Product' },
-  { title: 'Engineering' },
-  { title: 'Startup Journey' },
+  { title: 'View All', category: '' },
+  { title: 'Product', category: 'product' },
+  { title: 'Engineering', category: 'engineering' },
+  { title: 'Startup Journey', category: 'startup-journey' },
 ];
 
+const CATEGORIES = tabInfo.map((info) => info.category);
+
 const SectionPicker = () => {
-  const [selectedIndex, setSelectedIndex] = useState(0);
+  const router = useRouter();
 
   const onTabClickHandler = (index: number) => {
-    setSelectedIndex(index);
+    router.push(`/${tabInfo[index].category}`, undefined, { shallow: true });
   };
+
+  const { blogCategory } = router.query;
+  const selectedIndex = Math.max(CATEGORIES.indexOf((blogCategory as string | undefined) ?? ''), 0);
 
   return (
     <div css={[styles, sectionContainerStyles]}>
