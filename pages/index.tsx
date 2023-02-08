@@ -1,3 +1,3 @@
-import HomePage from 'components/home';
+import TopicList from 'components/topic-picker/TopicList';
 
-export default HomePage;
+export default TopicList;

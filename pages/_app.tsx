@@ -1,20 +1,26 @@
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import { css, Global } from '@emotion/react';
+import type { MarkdocNextJsPageProps } from '@markdoc/next.js';
+import { sectionContainerStyles } from 'components/bannerbox-site-shared/section-container';
+
 import Header from 'components/bannerbox-site-shared/Header';
 import Footer from 'components/bannerbox-site-shared/Footer';
+import TopicPicker from 'components/topic-picker/TopicPicker';
+import { BreakPoints } from 'components/bannerbox-shared/theme/breakpoints';
 
-import type { MarkdocNextJsPageProps } from '@markdoc/next.js';
+const contentStyles = css`
+  display: flex;
+  justify-content: center;
+  height: 100%;
+
+  .topic-picker {
+    margin-top: 85px;
+  }
+`;
 
 function App(appProps: AppProps<MarkdocNextJsPageProps>) {
   const { Component, pageProps } = appProps;
-
-  console.log(
-    {
-      markdoc: pageProps.markdoc,
-    },
-    '---> markdoc info'
-  );
 
   return (
     <>
@@ -39,11 +45,18 @@ function App(appProps: AppProps<MarkdocNextJsPageProps>) {
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="description" content="Bannerbox makes it easy to create and embed message banners on your site." />
-        <link rel="home" href="https://www.bannerbox.io/" />
+        <link rel="home" href="https://www.bannerbox.io/blog" />
         <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
       </Head>
       <Header />
-      <Component {...pageProps} />
+      <div css={[contentStyles, sectionContainerStyles]}>
+        <div className="section-container">
+          <div className="topic-picker">
+            <TopicPicker />
+          </div>
+          <Component {...pageProps} />
+        </div>
+      </div>
       <Footer />
     </>
   );

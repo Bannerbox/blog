@@ -1,22 +1,12 @@
 import { useState, useEffect } from 'react';
 import Router, { useRouter } from 'next/router';
 import { css } from '@emotion/react';
-import { BreakPoints } from 'components/bannerbox-shared/theme/breakpoints';
-import { sectionContainerStyles } from 'components/bannerbox-site-shared/section-container';
 import { DarkGrey } from 'components/bannerbox-shared/theme/colors';
 import Tab from './Tab';
 
 const styles = css`
   display: flex;
-  justify-content: center;
-  .section-container {
-    border-bottom: 2px solid ${DarkGrey.lightest};
-    display: flex;
-    align-items: center;
-    @media (max-width: ${BreakPoints.mobile_414}) {
-      display: block;
-    }
-  }
+  border-bottom: 2px solid ${DarkGrey.lightest};
 
   .tab:not(last-child) {
     margin-right: 75px;
@@ -37,7 +27,7 @@ const tabInfo: Array<TabInfo> = [
 
 const CATEGORIES = tabInfo.map((info) => info.category);
 
-const SectionPicker = () => {
+const TopicPicker = () => {
   const router = useRouter();
 
   const onTabClickHandler = (index: number) => {
@@ -48,19 +38,17 @@ const SectionPicker = () => {
   const selectedIndex = Math.max(CATEGORIES.indexOf((blogCategory as string | undefined) ?? ''), 0);
 
   return (
-    <div css={[styles, sectionContainerStyles]}>
-      <div className="section-container">
-        {tabInfo.map((info, index) => {
-          const { title } = info;
-          return (
-            <div key={index} className="tab">
-              <Tab title={title} index={index} selectedIndex={selectedIndex} onClickHandler={onTabClickHandler} />
-            </div>
-          );
-        })}
-      </div>
+    <div css={[styles]}>
+      {tabInfo.map((info, index) => {
+        const { title } = info;
+        return (
+          <div key={index} className="tab">
+            <Tab title={title} index={index} selectedIndex={selectedIndex} onClickHandler={onTabClickHandler} />
+          </div>
+        );
+      })}
     </div>
   );
 };
 
-export default SectionPicker;
+export default TopicPicker;
