@@ -7,7 +7,6 @@ import { sectionContainerStyles } from 'components/bannerbox-site-shared/section
 import Header from 'components/bannerbox-site-shared/Header';
 import Footer from 'components/bannerbox-site-shared/Footer';
 import TopicPicker from 'components/topic-picker/TopicPicker';
-import { BreakPoints } from 'components/bannerbox-shared/theme/breakpoints';
 
 const contentStyles = css`
   display: flex;
