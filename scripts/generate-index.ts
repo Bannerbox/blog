@@ -24,6 +24,7 @@ const postMetadata: Array<PostMetadata> = files.map((fileName) => {
   return data;
 });
 
-console.log(postMetadata, '---> metadata');
+let dataToWrite = JSON.stringify(postMetadata);
+fs.writeFileSync(path.join('./public/blog-posts.json'), dataToWrite);
 
 export {};

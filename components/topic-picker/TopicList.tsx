@@ -1,5 +1,5 @@
 import { css } from '@emotion/react';
-import TopicPicker from 'components/topic-picker/TopicPicker';
+import engineeringIndex from 'public/blog-posts.json';
 
 const styles = css`
   .list {
@@ -31,6 +31,8 @@ const TopicList = ({ topic }: Props) => {
   };
 
   const items = [...Array(10).keys()];
+
+  console.log(engineeringIndex);
 
   return (
     <div css={styles}>
