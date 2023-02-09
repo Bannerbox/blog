@@ -8,9 +8,9 @@ type Props = {
 };
 
 const Topic = ({ category }: Props) => {
-  //   const router = useRouter();
-  //   const { blogCategory } = router.query;
-  return <TopicList category={category} />;
+  const router = useRouter();
+  const { blogCategory } = router.query;
+  return <TopicList category={blogCategory as CATEGORY_TYPE} />;
 };
 
 export const getStaticProps: GetStaticProps = async (context) => {
