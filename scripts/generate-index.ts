@@ -2,22 +2,9 @@ import fs from 'fs';
 import path from 'path';
 import Markdoc from '@markdoc/markdoc';
 import yaml from 'js-yaml';
+import { CATEGORY_TYPE, PostMetadata } from 'types';
 
-type CATEGORY_FOLDER_TYPES = 'engineering' | 'product' | 'startup-journey';
-
-type PostMetadata = {
-  title: string;
-  description: string;
-  image: string;
-  date: string;
-  author: string;
-
-  // Extra info
-  link: string;
-  category: string;
-};
-
-const getCategoryMetadata = (category: CATEGORY_FOLDER_TYPES): Array<PostMetadata> => {
+const getCategoryMetadata = (category: CATEGORY_TYPE): Array<PostMetadata> => {
   // Read the directory
   const dirPath = path.join('./pages', category);
   const files = fs.readdirSync(dirPath);
@@ -56,7 +43,7 @@ const engineeringMetadata = getCategoryMetadata('engineering');
 const productMetadata = getCategoryMetadata('product');
 const startupJourneyMetadata = getCategoryMetadata('startup-journey');
 
-const allMetadata: Record<CATEGORY_FOLDER_TYPES, Array<PostMetadata>> = {
+const allMetadata: Record<string, Array<PostMetadata>> = {
   engineering: engineeringMetadata,
   product: productMetadata,
   'startup-journey': startupJourneyMetadata,
