@@ -22,4 +22,15 @@ export const getStaticProps: GetStaticProps = async (context) => {
   };
 };
 
+export async function getStaticPaths() {
+  return {
+    paths: [
+      { params: { blogCategory: 'engineering' } },
+      { params: { blogCategory: 'product' } },
+      { params: { blogCategory: 'startup-journey' } },
+    ],
+    fallback: false,
+  };
+}
+
 export default Topic;
