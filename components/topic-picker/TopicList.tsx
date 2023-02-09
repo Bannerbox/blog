@@ -1,9 +1,28 @@
+import { useState, useEffect } from 'react';
 import { css } from '@emotion/react';
-import allPostsMetadata from 'public/all-posts-metadata.json';
-import { useState } from 'react';
-import { CATEGORY_TYPE, PostMetadata } from 'types';
 
-const allPosts = allPostsMetadata as Record<CATEGORY_TYPE, Array<PostMetadata>>;
+import { CATEGORY_TYPE, PostMetadata } from 'types';
+import allPostsMetadata from 'public/all-posts-metadata.json';
+
+const getPosts = (category: CATEGORY_TYPE) => {
+  const allPosts = allPostsMetadata as Record<CATEGORY_TYPE, Array<PostMetadata>>;
+  switch (category) {
+    case 'all': {
+      const combined = Object.values(allPosts).flatMap((post) => post);
+      return combined.sort((a, b) => {
+        const dateA = new Date(a.date);
+        const dateB = new Date(b.date);
+        if (dateA.getTime() < dateB.getTime()) {
+          return 1;
+        } else {
+          return -1;
+        }
+      });
+    }
+    default:
+      return allPosts[category];
+  }
+};
 
 const styles = css`
   .list {
@@ -17,26 +36,13 @@ type Props = {
 };
 
 const TopicList = ({ category }: Props) => {
-  const [posts] = useState(() => {
-    switch (category) {
-      case 'all': {
-        const combined = Object.values(allPosts).flatMap((post) => post);
-        return combined.sort((a, b) => {
-          const dateA = new Date(a.date);
-          const dateB = new Date(b.date);
-          if (dateA.getTime() < dateB.getTime()) {
-            return 1;
-          } else {
-            return -1;
-          }
-        });
-      }
-      default:
-        return allPosts[category];
-    }
+  const [posts, setPosts] = useState(() => {
+    return getPosts(category);
   });
 
-  console.log(category, posts);
+  useEffect(() => {
+    setPosts(getPosts(category));
+  }, [category]);
 
   return (
     <div css={styles}>
