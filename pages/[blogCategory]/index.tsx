@@ -1,23 +1,22 @@
-import { useRouter } from 'next/router';
 import TopicList from 'components/topic-picker/TopicList';
-import { CATEGORY_TYPE } from 'types';
+import { CATEGORY_TYPE, PostMetadata } from 'types';
 import { GetStaticProps } from 'next';
+import getPostMetadata from 'scripts/getPostMetadata';
 
 type Props = {
-  category: CATEGORY_TYPE;
+  posts: Array<PostMetadata>;
 };
 
-const Topic = ({ category }: Props) => {
-  const router = useRouter();
-  const { blogCategory } = router.query;
-  return <TopicList category={blogCategory as CATEGORY_TYPE} />;
+const Topic = ({ posts }: Props) => {
+  return <TopicList posts={posts} />;
 };
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  const blogCategory = context.params?.blogCategory;
+  const blogCategory = context.params?.blogCategory as CATEGORY_TYPE;
+  const posts = getPostMetadata()[blogCategory];
   return {
     props: {
-      category: blogCategory,
+      posts,
     },
   };
 };
@@ -29,7 +28,7 @@ export async function getStaticPaths() {
       { params: { blogCategory: 'product' } },
       { params: { blogCategory: 'startup-journey' } },
     ],
-    fallback: false,
+    fallback: true,
   };
 }
 

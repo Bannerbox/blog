@@ -22,6 +22,7 @@ const getCategoryMetadata = (category: CATEGORY_TYPE): Array<PostMetadata> => {
     // Massage the data
     data.link = path.join(category, fileName.split('.')[0]);
     data.category = category;
+    data.date = data.date.toString();
     return data;
   });
 
@@ -39,19 +40,13 @@ const getCategoryMetadata = (category: CATEGORY_TYPE): Array<PostMetadata> => {
   return sortedMetadata;
 };
 
-const engineeringMetadata = getCategoryMetadata('engineering');
-const productMetadata = getCategoryMetadata('product');
-const startupJourneyMetadata = getCategoryMetadata('startup-journey');
-
-const allMetadata: Record<string, Array<PostMetadata>> = {
-  engineering: engineeringMetadata,
-  product: productMetadata,
-  'startup-journey': startupJourneyMetadata,
+const getPostMetadata = () => {
+  const allMetadata: Record<CATEGORY_TYPE, Array<PostMetadata>> = {
+    engineering: getCategoryMetadata('engineering'),
+    product: getCategoryMetadata('product'),
+    'startup-journey': getCategoryMetadata('startup-journey'),
+  };
+  return allMetadata;
 };
 
-console.log(allMetadata);
-
-let dataToWrite = JSON.stringify(allMetadata);
-fs.writeFileSync(path.join('./public/all-posts-metadata.json'), dataToWrite);
-
-export {};
+export default getPostMetadata;

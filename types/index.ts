@@ -1,4 +1,4 @@
-export type CATEGORY_TYPE = 'all' | 'engineering' | 'product' | 'startup-journey';
+export type CATEGORY_TYPE = 'engineering' | 'product' | 'startup-journey';
 
 export type PostMetadata = {
   title: string;

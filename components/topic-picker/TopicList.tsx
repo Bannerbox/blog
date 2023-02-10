@@ -1,28 +1,5 @@
-import { useState, useEffect } from 'react';
 import { css } from '@emotion/react';
-
-import { CATEGORY_TYPE, PostMetadata } from 'types';
-import allPostsMetadata from 'public/all-posts-metadata.json';
-
-const getPosts = (category: CATEGORY_TYPE) => {
-  const allPosts = allPostsMetadata as Record<CATEGORY_TYPE, Array<PostMetadata>>;
-  switch (category) {
-    case 'all': {
-      const combined = Object.values(allPosts).flatMap((post) => post);
-      return combined.sort((a, b) => {
-        const dateA = new Date(a.date);
-        const dateB = new Date(b.date);
-        if (dateA.getTime() < dateB.getTime()) {
-          return 1;
-        } else {
-          return -1;
-        }
-      });
-    }
-    default:
-      return allPosts[category];
-  }
-};
+import { PostMetadata } from 'types';
 
 const styles = css`
   .list {
@@ -32,18 +9,10 @@ const styles = css`
 `;
 
 type Props = {
-  category: CATEGORY_TYPE;
+  posts: Array<PostMetadata>;
 };
 
-const TopicList = ({ category }: Props) => {
-  const [posts, setPosts] = useState(() => {
-    return getPosts(category);
-  });
-
-  useEffect(() => {
-    setPosts(getPosts(category));
-  }, [category]);
-
+const TopicList = ({ posts }: Props) => {
   return (
     <div css={styles}>
       <ul className="list">

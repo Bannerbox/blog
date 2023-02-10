@@ -8,8 +8,7 @@
     "start": "next start",
     "dev": "next dev -p 3200",
     "ts-check": "tsc",
-    "test": "jest",
-    "generate-index": "ts-node ./scripts/generate-index.ts"
+    "test": "jest"
   },
   "dependencies": {
     "@emotion/react": "^11.10.5",
