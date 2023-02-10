@@ -28,8 +28,7 @@ export async function getStaticPaths() {
       { params: { blogCategory: 'product' } },
       { params: { blogCategory: 'startup-journey' } },
     ],
-    // Next will pre-render only these paths at build time.
-    // other routes will 404.
+    // Next will pre-render only these paths at build time other routes will 404.
     fallback: false,
   };
 }
