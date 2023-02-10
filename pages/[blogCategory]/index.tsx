@@ -12,8 +12,8 @@ const Topic = ({ posts }: Props) => {
 };
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  const blogCategory = context.params?.blogCategory as CATEGORY_TYPE;
-  const posts = getPostMetadata()[blogCategory];
+  const blogCategory = context.params?.blogCategory as CATEGORY_TYPE | undefined;
+  const posts = blogCategory ? getPostMetadata()[blogCategory] : [];
   return {
     props: {
       posts,
