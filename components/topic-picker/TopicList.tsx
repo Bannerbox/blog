@@ -27,12 +27,10 @@ const styles = css`
   }
   .link {
     font-size: 20px;
+    margin-bottom: 8px;
   }
   .link a {
     color: ${DarkGrey.ink};
-  }
-  .description {
-    font-size: 20px;
   }
   .content-container {
     display: flex;
@@ -44,6 +42,7 @@ const styles = css`
   }
   .footer {
     display: flex;
+    align-content: center;
   }
 `;
 
@@ -56,6 +55,7 @@ const TopicList = ({ posts }: Props) => {
     <div css={styles}>
       <ul className="list">
         {posts.map((post, index) => {
+          const formattedDate = new Date(post.date).toLocaleDateString();
           return (
             <li key={index}>
               <div className="cell-container">
@@ -67,11 +67,10 @@ const TopicList = ({ posts }: Props) => {
                     <div className="link">
                       <Link href={post.link}>{post.title}</Link>
                     </div>
-                    <div className="description">{post.description}</div>
+                    <div className="summary">{post.description}</div>
                   </div>
                   <div className="footer">
-                    <div>{post.date}</div>
-                    <div>{post.category}</div>
+                    <div className="date">{formattedDate}</div>
                   </div>
                 </div>
               </div>
