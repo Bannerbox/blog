@@ -3,6 +3,8 @@ import { PostMetadata } from 'types';
 import { LightGrey, DarkGrey } from 'components/bannerbox-shared/theme/colors';
 import Link from 'next/link';
 
+const CELL_HEIGHT_IN_PIXELS = 100;
+
 const styles = css`
   color: ${DarkGrey.ink};
 
@@ -15,14 +17,13 @@ const styles = css`
     padding: 24px 0;
   }
   .image-container {
-    height: 100px;
+    height: ${CELL_HEIGHT_IN_PIXELS}px;
     width: 184px;
     background-color: ${LightGrey.sky};
     margin-right: 34px;
   }
   .cell-container {
     display: flex;
-    border: 1px solid green;
   }
   .link {
     font-size: 20px;
@@ -34,10 +35,12 @@ const styles = css`
     font-size: 20px;
   }
   .content-container {
-    height: 100%;
     display: flex;
+    height: ${CELL_HEIGHT_IN_PIXELS}px;
     flex-direction: column;
-    border: 1px solid red;
+  }
+  .body {
+    height: 100%;
   }
   .footer {
     display: flex;
