@@ -1,5 +1,6 @@
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 import { css, Global } from '@emotion/react';
 import type { MarkdocNextJsPageProps } from '@markdoc/next.js';
 import { sectionContainerStyles } from 'components/bannerbox-site-shared/section-container';
@@ -19,6 +20,13 @@ const contentStyles = css`
 `;
 
 function App(appProps: AppProps<MarkdocNextJsPageProps>) {
+  const router = useRouter();
+  const route = router.route;
+
+  // Hide the topic picker when viewing an article
+  const paths = route.split('/').filter((path) => path.length > 0);
+  const shouldShowTopicPicker = paths.length <= 1;
+
   const { Component, pageProps } = appProps;
 
   return (
@@ -50,9 +58,11 @@ function App(appProps: AppProps<MarkdocNextJsPageProps>) {
       <Header />
       <div css={[contentStyles, sectionContainerStyles]}>
         <div className="section-container">
-          <div className="topic-picker">
-            <TopicPicker />
-          </div>
+          {shouldShowTopicPicker && (
+            <div className="topic-picker">
+              <TopicPicker />
+            </div>
+          )}
           <Component {...pageProps} />
         </div>
       </div>
