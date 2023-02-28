@@ -25,7 +25,7 @@ function App(appProps: AppProps<MarkdocNextJsPageProps>) {
 
   // Hide the topic picker when viewing an article
   const paths = route.split('/').filter((path) => path.length > 0);
-  const shouldShowTopicPicker = paths.length <= 1;
+  const shouldShowTopicPicker = true; //paths.length <= 1;
 
   const { Component, pageProps } = appProps;
 
