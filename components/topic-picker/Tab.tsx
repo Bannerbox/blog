@@ -29,15 +29,15 @@ const Tab = ({ title, category }: Props) => {
 
   let highLightColor: SerializedStyles | undefined;
 
-  const viewAll = category.length === 0 && blogCategory === undefined;
-  if (blogCategory === category || viewAll) {
-    highLightColor = css`
-      a {
-        color: ${DarkGrey.ink};
-        border-bottom: 2px solid ${DarkGrey.ink};
-      }
-    `;
-  }
+  // const viewAll = category.length === 0 && blogCategory === undefined;
+  // if (blogCategory === category || viewAll) {
+  //   highLightColor = css`
+  //     a {
+  //       color: ${DarkGrey.ink};
+  //       border-bottom: 2px solid ${DarkGrey.ink};
+  //     }
+  //   `;
+  // }
 
   return (
     <div css={[styles, highLightColor]}>
