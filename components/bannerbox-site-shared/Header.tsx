@@ -68,7 +68,7 @@ const Header = () => {
           <span className="docs-link option">
             <Link href="/docs">Docs</Link>
           </span>
-          <span className="option">
+          {/* <span className="option">
             <Link href="/signin">Sign In</Link>
           </span>
           <span className="signup-link">
@@ -76,7 +76,7 @@ const Header = () => {
           </span>
           <span css={commonBoxShadow} className="signup-button">
             <Link href="/signup">Sign Up</Link>
-          </span>
+          </span> */}
         </div>
       </div>
     </div>
