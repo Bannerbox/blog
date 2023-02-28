@@ -66,17 +66,17 @@ const Header = () => {
         <Logo />
         <div className="header-options">
           <span className="docs-link option">
-            <Link href="/docs">Docs</Link>
+            <Link href="https://www.bannerbox.io/docs">Docs</Link>
           </span>
-          {/* <span className="option">
-            <Link href="/signin">Sign In</Link>
+          <span className="option">
+            <Link href="https://www.bannerbox.io/signin">Sign In</Link>
           </span>
           <span className="signup-link">
-            <Link href="/signup">Sign Up</Link>
+            <Link href="https://www.bannerbox.io/signup">Sign Up</Link>
           </span>
           <span css={commonBoxShadow} className="signup-button">
-            <Link href="/signup">Sign Up</Link>
-          </span> */}
+            <Link href="https://www.bannerbox.io/signup">Sign Up</Link>
+          </span>
         </div>
       </div>
     </div>
