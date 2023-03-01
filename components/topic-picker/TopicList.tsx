@@ -55,7 +55,7 @@ const TopicList = ({ posts }: Props) => {
     <div css={styles}>
       <ul className="list">
         {posts.map((post, index) => {
-          const formattedDate = new Date(post.date).toLocaleDateString();
+          const formattedDate = ''; //new Date(post.date).toLocaleDateString();
           return (
             <li key={index}>
               <div className="cell-container">
