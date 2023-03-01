@@ -20,18 +20,18 @@ const contentStyles = css`
 `;
 
 function App(appProps: AppProps<MarkdocNextJsPageProps>) {
-  const router = useRouter();
-  const route = router.route;
+  // const router = useRouter();
+  // const route = router.route;
 
-  // Hide the topic picker when viewing an article
-  const paths = route.split('/').filter((path) => path.length > 0);
-  const shouldShowTopicPicker = true; //paths.length <= 1;
+  // // Hide the topic picker when viewing an article
+  // const paths = route.split('/').filter((path) => path.length > 0);
+  // const shouldShowTopicPicker = true; //paths.length <= 1;
 
   const { Component, pageProps } = appProps;
 
   return (
     <>
-      <Global
+      {/* <Global
         styles={css`
           html,
           body {
@@ -66,7 +66,8 @@ function App(appProps: AppProps<MarkdocNextJsPageProps>) {
           <Component {...pageProps} />
         </div>
       </div>
-      <Footer />
+      <Footer /> */}
+      <Component {...pageProps} />
     </>
   );
 }
