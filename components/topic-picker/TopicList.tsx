@@ -52,33 +52,34 @@ type Props = {
 
 const TopicList = ({ posts }: Props) => {
   return (
-    <div css={styles}>
-      <ul className="list">
-        {posts.map((post, index) => {
-          const formattedDate = ''; //new Date(post.date).toLocaleDateString();
-          return (
-            <li key={index}>
-              <div className="cell-container">
-                <div className="image-container">
-                  <img />
-                </div>
-                <div className="content-container">
-                  <div className="body">
-                    <div className="link">
-                      <Link href={post.link}>{post.title}</Link>
-                    </div>
-                    <div className="summary">{post.description}</div>
-                  </div>
-                  <div className="footer">
-                    <div className="date">{formattedDate}</div>
-                  </div>
-                </div>
-              </div>
-            </li>
-          );
-        })}
-      </ul>
-    </div>
+    <div>Hello item</div>
+    // <div css={styles}>
+    //   <ul className="list">
+    //     {posts.map((post, index) => {
+    //       const formattedDate = ''; //new Date(post.date).toLocaleDateString();
+    //       return (
+    //         <li key={index}>
+    //           <div className="cell-container">
+    //             <div className="image-container">
+    //               <img />
+    //             </div>
+    //             <div className="content-container">
+    //               <div className="body">
+    //                 <div className="link">
+    //                   <Link href={post.link}>{post.title}</Link>
+    //                 </div>
+    //                 <div className="summary">{post.description}</div>
+    //               </div>
+    //               <div className="footer">
+    //                 <div className="date">{formattedDate}</div>
+    //               </div>
+    //             </div>
+    //           </div>
+    //         </li>
+    //       );
+    //     })}
+    //   </ul>
+    // </div>
   );
 };
 
