@@ -48,9 +48,9 @@ const getCategoryMetadata = (category: CATEGORY_TYPE): Array<PostMetadata> => {
 const getPostMetadata = () => {
   // @ts-ignore // Disable for now until there are more blog posts.
   const allMetadata: Record<CATEGORY_TYPE, Array<PostMetadata>> = {
-    // engineering: getCategoryMetadata('engineering'),
+    engineering: getCategoryMetadata('engineering'),
     product: getCategoryMetadata('product'),
-    // 'startup-journey': getCategoryMetadata('startup-journey'),
+    'startup-journey': getCategoryMetadata('startup-journey'),
   };
   return allMetadata;
 };
