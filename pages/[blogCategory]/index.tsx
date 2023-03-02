@@ -25,8 +25,8 @@ export async function getStaticPaths() {
   return {
     paths: [
       { params: { blogCategory: 'product' } },
-      // { params: { blogCategory: 'engineering' } },
-      // { params: { blogCategory: 'startup-journey' } },
+      { params: { blogCategory: 'engineering' } },
+      { params: { blogCategory: 'startup-journey' } },
     ],
     // Next will pre-render only these paths at build time other routes will 404.
     fallback: false,
