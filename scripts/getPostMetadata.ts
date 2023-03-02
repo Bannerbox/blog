@@ -6,8 +6,13 @@ import { CATEGORY_TYPE, PostMetadata } from 'types';
 
 const getCategoryMetadata = (category: CATEGORY_TYPE): Array<PostMetadata> => {
   // Read the directory
-  const dirPath = path.join('./pages', category);
-  const files = fs.readdirSync(dirPath);
+  let files = [];
+  try {
+    const dirPath = path.join('./pages', category);
+    files = fs.readdirSync(dirPath);
+  } catch {
+    return [];
+  }
 
   // Read the file content individually
   const postMetadata: Array<PostMetadata> = files.map((fileName) => {
