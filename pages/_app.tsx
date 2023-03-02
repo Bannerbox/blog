@@ -14,6 +14,8 @@ const contentStyles = css`
   justify-content: center;
   height: 100%;
 
+  min-height: 1024px;
+
   .topic-picker {
     margin-top: 85px;
   }
@@ -41,10 +43,6 @@ function App(appProps: AppProps<MarkdocNextJsPageProps>) {
             font-size: 14px;
           }
           #__next {
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
           }
         `}
       />
