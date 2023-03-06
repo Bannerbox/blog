@@ -14,7 +14,7 @@ const Logo = () => {
   return (
     <div css={styles}>
       <span className="link">
-        <Link href="/">Bannerbox</Link>
+        <Link href="https://www.bannerbox.io">Bannerbox</Link>
       </span>
     </div>
   );
