@@ -20,11 +20,12 @@ Product and Marketing people are tasked with growing registrations and conversio
 Bannerbox takes your onsite marketing efforts to the next level. Use the component builder to design and customize banners and modals to achieve your needs.
 
 Currently Bannerbox offers five different banner styles
-Bar style
-Modal style
-Slider style
-Alert style
-Full page style
+
+- Bar style
+- Modal style
+- Slider style
+- Alert style
+- Full page style
 
 You can test your changes before publishing.
 
