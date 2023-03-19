@@ -8,6 +8,11 @@ const CELL_HEIGHT_IN_PIXELS = 100;
 
 const styles = css`
   color: ${DarkGrey.ink};
+  padding: 12px;
+
+  :hover {
+    background-color: ${LightGrey.lighter};
+  }
 
   a {
     display: flex;
