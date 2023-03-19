@@ -1,7 +1,5 @@
 import { css } from '@emotion/react';
-
 import { DarkGrey } from 'components/bannerbox-shared/theme/colors';
-
 import Tab from './Tab';
 
 const styles = css`

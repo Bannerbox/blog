@@ -8,20 +8,25 @@ const CELL_HEIGHT_IN_PIXELS = 100;
 
 const styles = css`
   color: ${DarkGrey.ink};
-  display: flex;
 
+  a {
+    display: flex;
+    text-decoration: unset;
+    color: unset;
+  }
   .image-container {
     height: ${CELL_HEIGHT_IN_PIXELS}px;
     width: 184px;
     background-color: ${LightGrey.sky};
     margin-right: 34px;
   }
-  .link {
+  .title {
     font-size: 20px;
     margin-bottom: 8px;
+    margin-top: 0;
   }
-  .link a {
-    color: ${DarkGrey.ink};
+  .summary {
+    font-size: 16px;
   }
   .content-container {
     display: flex;
@@ -50,20 +55,20 @@ const Post = ({ post }: Props) => {
 
   return (
     <div className="post" css={styles}>
-      <div className="image-container">
-        <img />
-      </div>
-      <div className="content-container">
-        <div className="body">
-          <div className="link">
-            <Link href={post.link}>{post.title}</Link>
+      <Link href={post.link}>
+        <div className="image-container">
+          <img />
+        </div>
+        <div className="content-container">
+          <div className="body">
+            <h2 className="title">{post.title}</h2>
+            <div className="summary">{post.description}</div>
           </div>
-          <div className="summary">{post.description}</div>
+          <div className="footer">
+            <div className="date">{formattedDate}</div>
+          </div>
         </div>
-        <div className="footer">
-          <div className="date">{formattedDate}</div>
-        </div>
-      </div>
+      </Link>
     </div>
   );
 };
