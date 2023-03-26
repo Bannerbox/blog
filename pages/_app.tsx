@@ -21,6 +21,29 @@ const contentStyles = css`
   }
 `;
 
+const articleStyles = css`
+  display: flex;
+  justify-content: center;
+
+  font-size: 20px;
+  article {
+    margin-top: 48px;
+    max-width: 680px;
+  }
+  h1 {
+    margin-top: 70px;
+    font-size: 32px;
+  }
+  h2 {
+    margin-top: 48px;
+    font-size: 24px;
+  }
+  p {
+    font-size: 20px;
+    margin-top: 24px;
+  }
+`;
+
 function App(appProps: AppProps<MarkdocNextJsPageProps>) {
   const router = useRouter();
   const route = router.route;
@@ -30,6 +53,9 @@ function App(appProps: AppProps<MarkdocNextJsPageProps>) {
   const shouldShowTopicPicker = paths.length <= 1;
 
   const { Component, pageProps } = appProps;
+
+  const hasMarkdoc = pageProps.markdoc !== undefined;
+  const markdocArticleStyles = hasMarkdoc ? articleStyles : undefined;
 
   return (
     <>
@@ -55,7 +81,7 @@ function App(appProps: AppProps<MarkdocNextJsPageProps>) {
       </Head>
       <Header />
       <div css={[contentStyles, sectionContainerStyles]}>
-        <div className="section-container">
+        <div css={markdocArticleStyles} className="section-container">
           {shouldShowTopicPicker && (
             <div className="topic-picker">
               <TopicPicker />
