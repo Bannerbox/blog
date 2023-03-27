@@ -24,10 +24,13 @@ const getCategoryMetadata = (category: CATEGORY_TYPE): Array<PostMetadata> => {
     const frontmatter = ast.attributes.frontmatter;
     const data = yaml.load(frontmatter) as PostMetadata;
 
+    const fileNameWithoutPath = fileName.split('.')[0];
+
     // Massage the data
-    data.link = path.join(category, fileName.split('.')[0]);
+    data.link = path.join(category, fileNameWithoutPath);
     data.category = category;
     data.date = data.date.toString();
+    data.thumbnail = path.join('/blog/posts', fileNameWithoutPath, 'thumbnail.png');
     return data;
   });
 

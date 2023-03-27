@@ -2,7 +2,6 @@
 title: What is Bannerbox?
 category: product
 description: Bannerbox makes it easy to embed display or interactive components onto your site with no code.
-image: www.bannerbox.io/images/test
 author: David Le
 date: 2022-03-16
 ---

@@ -7,6 +7,8 @@ export type PostMetadata = {
   date: string;
   author: string;
 
+  thumbnail: string;
+
   // Extra info
   link: string;
   category: string;

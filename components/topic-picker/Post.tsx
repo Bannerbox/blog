@@ -62,7 +62,7 @@ const Post = ({ post }: Props) => {
     <div className="post" css={styles}>
       <Link href={post.link}>
         <div className="image-container">
-          <img />
+          <img src={post.thumbnail} width="184px" height="100px" />
         </div>
         <div className="content-container">
           <div className="body">
