@@ -37,6 +37,7 @@ const styles = css`
     display: flex;
     height: ${CELL_HEIGHT_IN_PIXELS}px;
     flex-direction: column;
+    max-width: 600px;
   }
   .body {
     height: 100%;
