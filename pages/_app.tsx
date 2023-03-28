@@ -8,6 +8,8 @@ import { sectionContainerStyles } from 'components/bannerbox-site-shared/section
 import Header from 'components/bannerbox-site-shared/Header';
 import Footer from 'components/bannerbox-site-shared/Footer';
 import TopicPicker from 'components/topic-picker/TopicPicker';
+import SeoMetaTags from 'components/SeoMetaTags';
+import { PostMetadata } from 'types';
 
 const contentStyles = css`
   display: flex;
@@ -53,9 +55,10 @@ function App(appProps: AppProps<MarkdocNextJsPageProps>) {
   const shouldShowTopicPicker = paths.length <= 1;
 
   const { Component, pageProps } = appProps;
+  const { markdoc } = pageProps;
 
-  const hasMarkdoc = pageProps.markdoc !== undefined;
-  const markdocArticleStyles = hasMarkdoc ? articleStyles : undefined;
+  const markdocArticleStyles = !!markdoc ? articleStyles : undefined;
+  const postMetadata = markdoc?.frontmatter as PostMetadata | undefined;
 
   return (
     <>
@@ -75,7 +78,6 @@ function App(appProps: AppProps<MarkdocNextJsPageProps>) {
       <Head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="description" content="Bannerbox makes it easy to create and embed message banners on your site." />
         <link rel="home" href="https://www.bannerbox.io/blog" />
         <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
       </Head>
@@ -90,6 +92,7 @@ function App(appProps: AppProps<MarkdocNextJsPageProps>) {
           <Component {...pageProps} />
         </div>
       </div>
+      <SeoMetaTags postMetadata={postMetadata} />
       <Footer />
     </>
   );
