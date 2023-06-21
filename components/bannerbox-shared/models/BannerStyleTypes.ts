@@ -1,12 +1,14 @@
 import { RGBAColor } from '../utils/colorUtils';
 
-export enum BannerStyleType {
+export enum StyleType {
   FillStyle = 'FillStyle',
   BorderStyle = 'BorderStyle',
   RadiusStyle = 'RadiusStyle',
   MarginStyle = 'MarginStyle',
   PaddingStyle = 'PaddingStyle',
   SizeStyle = 'SizeStyle',
+  PositionStyle = 'PositionStyle', // Refers to x,y position
+  ImageStyle = 'ImageStyle',
   ContentPosition = 'ContentPosition',
 }
 
@@ -21,21 +23,21 @@ export enum SizeUnit {
 }
 
 export type FillStyle = {
-  type: BannerStyleType.FillStyle;
+  type: StyleType.FillStyle;
   enabled: boolean;
   color: RGBAColor;
   opacity: number;
 };
 
 export type BorderStyle = {
-  type: BannerStyleType.BorderStyle;
+  type: StyleType.BorderStyle;
   enabled: boolean;
   color: RGBAColor;
   width: number;
 };
 
 export type RadiusStyle = {
-  type: BannerStyleType.RadiusStyle;
+  type: StyleType.RadiusStyle;
   topLeft: number;
   topRight: number;
   bottomLeft: number;
@@ -43,7 +45,7 @@ export type RadiusStyle = {
 };
 
 export type MarginStyle = {
-  type: BannerStyleType.MarginStyle;
+  type: StyleType.MarginStyle;
   top: number;
   right: number;
   bottom: number;
@@ -51,7 +53,7 @@ export type MarginStyle = {
 };
 
 export type PaddingStyle = {
-  type: BannerStyleType.PaddingStyle;
+  type: StyleType.PaddingStyle;
   top: number;
   right: number;
   bottom: number;
@@ -59,7 +61,7 @@ export type PaddingStyle = {
 };
 
 export type SizeStyle = {
-  type: BannerStyleType.SizeStyle;
+  type: StyleType.SizeStyle;
   width: {
     enabled: boolean;
     value: number;
@@ -72,13 +74,33 @@ export type SizeStyle = {
   };
 };
 
+export type PositionStyle = {
+  type: StyleType.PositionStyle;
+  x: {
+    value: number;
+    unit: SizeUnit.pixels;
+  };
+  y: {
+    value: number;
+    unit: SizeUnit.pixels;
+  };
+};
+
+export type ImageStyle = {
+  type: StyleType.ImageStyle;
+  position: PositionStyle;
+  fit: ImageFitStyle;
+  altText: string;
+  size?: SizeStyle;
+};
+
 export enum AnchorType {
   fixed = 'fixed',
   flex = 'flex',
 }
 
 export type ContentPosition = {
-  type: BannerStyleType.ContentPosition;
+  type: StyleType.ContentPosition;
   top: AnchorType;
   right: AnchorType;
   bottom: AnchorType;
@@ -92,16 +114,19 @@ export type AllStyles =
   | MarginStyle
   | PaddingStyle
   | SizeStyle
+  | PositionStyle
+  | ImageStyle
   | ContentPosition;
 
 export type BannerStyles = {
-  fillStyle?: FillStyle;
-  borderStyle?: BorderStyle;
-  radiusStyle?: RadiusStyle;
-  marginStyle?: MarginStyle;
-  paddingStyle?: PaddingStyle;
+  type: 'banner';
+  fillStyle: FillStyle;
+  borderStyle: BorderStyle;
+  radiusStyle: RadiusStyle;
+  marginStyle: MarginStyle;
+  paddingStyle: PaddingStyle;
   sizeStyle: SizeStyle; // All banners should have a valid size
-  contentPosition?: ContentPosition;
+  contentPosition: ContentPosition;
 };
 
 export type AlertMandatoryStyle = {
@@ -113,5 +138,22 @@ export type AlertMandatoryStyle = {
     };
   };
 };
+
+export enum ImageFitStyle {
+  // Preserving aspect ratio, attempt to ensure the image covers both provided dimensions by cropping/clipping to fit.
+  cover = 'cover',
+
+  // Preserving aspect ratio, contain within both provided dimensions using "letterboxing" where necessary.
+  contain = 'contain',
+
+  // Ignore the aspect ratio of the input and stretch to both provided dimensions.
+  fill = 'fill',
+
+  // Preserving aspect ratio, resize the image to be as large as possible while ensuring its dimensions are less than or equal to both those specified.
+  inside = 'inside',
+
+  // Preserving aspect ratio, resize the image to be as small as possible while ensuring its dimensions are greater than or equal to both those specified.
+  outside = 'outside',
+}
 
 export type MandatoryBannerStyles = AlertMandatoryStyle;

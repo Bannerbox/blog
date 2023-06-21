@@ -1,6 +1,6 @@
 import { BannerBehaviors } from './BehaviorTypes';
 import { BannerStyles, MandatoryBannerStyles } from './BannerStyleTypes';
-import { CustomElement } from 'components/bannerbox-shared/models/BannerBoxSlate';
+import { CustomElement } from './BannerBoxSlate';
 
 export enum BannerType {
   BAR = 'BAR',
@@ -89,4 +89,3 @@ export type TemplateDefaults = {
   behaviors: BannerBehaviors;
   mandatoryStyles?: MandatoryBannerStyles;
 };
-

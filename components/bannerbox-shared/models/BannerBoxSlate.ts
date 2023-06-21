@@ -1,35 +1,100 @@
-import { TextJustifyStyleType, BlockHeaderStyleType, ListStyleType } from '../utils/styleMap';
+import { Node } from 'slate';
 
-type Div = 'div';
-type Heading = 'heading';
-type Link = 'link';
-type Image = 'image';
-type List = 'list';
-type ListItem = 'list-item';
+import { JustifyStyle, BlockHeaderStyleType, ListStyleType } from '../utils/styleMap';
+import {
+  FillStyle,
+  BorderStyle,
+  RadiusStyle,
+  MarginStyle,
+  PaddingStyle,
+  SizeStyle,
+  ContentPosition,
+  ImageStyle,
+} from './BannerStyleTypes';
+import { ImageModel } from './ImageModel';
 
-export type BlockType = Div | Heading | Link | Image | List | ListItem;
+export type Button = 'button';
+export type Container = 'container';
+export type Div = 'div';
+export type Heading = 'heading';
+export type Link = 'link';
+export type Image = 'image';
+export type List = 'list';
+export type ListItem = 'list-item';
+
+export type BlockType = Button | Container | Div | Heading | Link | Image | List | ListItem;
+
+export type InsertPositionType = 'top' | 'right' | 'bottom' | 'left';
+
+// Layout direction of the container. Column is similar to block style and row is similar to flex style.
+export type LayoutDirection = 'row' | 'column';
+
+export type ButtonStyle = {
+  type: Button;
+  displayName: string;
+  url?: string;
+  styles: {
+    align?: JustifyStyle;
+    fillStyle: FillStyle;
+    borderStyle: BorderStyle;
+    radiusStyle: RadiusStyle;
+    marginStyle: MarginStyle;
+    paddingStyle: PaddingStyle;
+    sizeStyle: SizeStyle;
+
+    // TODO: Disable for now. Get this to work in the future.
+    contentPosition?: ContentPosition;
+  };
+};
+
+export type ContainerStyle = {
+  type: Container;
+  displayName: string;
+  isParentContainer: boolean;
+  layoutDirection: LayoutDirection;
+  styles: {
+    fillStyle: FillStyle;
+    borderStyle: BorderStyle;
+    radiusStyle: RadiusStyle;
+    marginStyle: MarginStyle;
+    paddingStyle: PaddingStyle;
+    sizeStyle: SizeStyle;
+    contentPosition: ContentPosition;
+  };
+};
+
+// This refers to the image component that can be added the editor.
+export type ImageComponentStyle = {
+  type: Image;
+  displayName: string;
+  imageDetails?: ImageModel;
+  styles: {
+    align?: JustifyStyle;
+    fillStyle: FillStyle;
+    borderStyle: BorderStyle;
+    radiusStyle: RadiusStyle;
+    marginStyle: MarginStyle;
+    paddingStyle: PaddingStyle;
+    sizeStyle: SizeStyle;
+    imageStyle: ImageStyle;
+  };
+};
 
 export type DivStyle = {
   type: Div;
-  align?: TextJustifyStyleType;
+  align?: JustifyStyle;
 };
 
 export type HeadingStyle = {
   type: Heading;
   value: BlockHeaderStyleType;
-  align?: TextJustifyStyleType;
-};
-
-export type ImageStyle = {
-  type: Image;
-  value: string;
-  align?: TextJustifyStyleType;
+  align?: JustifyStyle;
 };
 
 export type LinkStyle = {
   type: Link;
-  value: string;
-  align?: TextJustifyStyleType;
+  value: string; // The link URL
+  align?: JustifyStyle;
 };
 
 export type ListStyle = {
@@ -39,12 +104,26 @@ export type ListStyle = {
 
 export type ListItemStyle = {
   type: ListItem;
-  align?: TextJustifyStyleType;
+  align?: JustifyStyle;
 };
 
-export type BlockStyle = DivStyle | HeadingStyle | ImageStyle | LinkStyle | ListStyle | ListItemStyle;
+export type BlockStyle =
+  | ButtonStyle
+  | ContainerStyle
+  | DivStyle
+  | HeadingStyle
+  | ImageComponentStyle
+  | LinkStyle
+  | ListStyle
+  | ListItemStyle;
 
-export type SupportsAlignStyle = DivStyle | HeadingStyle | ImageStyle | LinkStyle | ListItemStyle;
+export type SupportsAlignStyle =
+  | ButtonStyle
+  | DivStyle
+  | HeadingStyle
+  | ImageComponentStyle
+  | LinkStyle
+  | ListItemStyle;
 
 export type CustomElement = {
   blockStyle: BlockStyle;
@@ -71,6 +150,45 @@ export type CustomTextElement = {
   text: string;
 };
 
+export type ContainerElement = {
+  blockStyle: ContainerStyle;
+  children: Array<CustomElement | CustomTextElement>;
+};
+
+export type ElementAttributes = {
+  [key: string]: any;
+};
+
 export const supportsAlignText = (type: BlockType): boolean => {
-  return ['div', 'heading', 'image', 'link', 'list-item'].includes(type);
+  return ['button', 'div', 'heading', 'image', 'link', 'list-item'].includes(type);
+};
+
+export const isContainerElement = (node: Node): node is ContainerElement => {
+  return isCustomElement(node) && node.blockStyle.type === 'container';
+};
+
+export const isButtonEmpty = (node: Node): boolean => {
+  if (isCustomElement(node) && node.blockStyle.type === 'button' && node.children.length === 1) {
+    return isEmptyDivElement(node.children[0]);
+  }
+
+  return false;
+};
+
+export const isEmptyDivElement = (node: Node): boolean => {
+  if (isCustomElement(node) && node.blockStyle.type === 'div' && node.children.length === 1) {
+    const textElement = node.children[0];
+    if (isTextElement(textElement)) {
+      return textElement.text.length === 0;
+    }
+  }
+  return false;
+};
+
+export const isTextElement = (node: Node): node is CustomTextElement => {
+  return 'text' in node;
+};
+
+export const isCustomElement = (node: Node): node is CustomElement => {
+  return 'blockStyle' in node;
 };

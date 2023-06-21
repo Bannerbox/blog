@@ -38,7 +38,7 @@ export enum BlockHeaderStyleType {
   HEADING_3 = 'bb-heading-3',
 }
 
-export enum TextJustifyStyleType {
+export enum JustifyStyle {
   LEFT = 'bb-left-justify',
   CENTER = 'bb-center-justify',
   RIGHT = 'bb-right-justify',
@@ -49,21 +49,21 @@ export enum ListStyleType {
   UNORDERED_LIST = 'unordered-list',
 }
 
-export const getTextAlignStyle = (align: TextJustifyStyleType): SerializedStyles | undefined => {
+export const getTextAlignStyle = (align: JustifyStyle): SerializedStyles | undefined => {
   switch (align) {
-    case TextJustifyStyleType.LEFT:
+    case JustifyStyle.LEFT:
       return css`
         text-align: left;
       `;
-    case TextJustifyStyleType.CENTER:
+    case JustifyStyle.CENTER:
       return css`
         text-align: center;
       `;
-    case TextJustifyStyleType.RIGHT:
+    case JustifyStyle.RIGHT:
       return css`
         text-align: right;
       `;
-    case TextJustifyStyleType.FULL:
+    case JustifyStyle.FULL:
       return css`
         text-align: justify;
       `;
