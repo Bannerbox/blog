@@ -1,4 +1,5 @@
 import { RGBAColor } from '../utils/colorUtils';
+import { ImageModel } from './ImageModel';
 
 export enum StyleType {
   FillStyle = 'FillStyle',
@@ -90,8 +91,10 @@ export type ImageStyle = {
   type: StyleType.ImageStyle;
   position: PositionStyle;
   fit: ImageFitStyle;
-  altText: string;
+  altText?: string;
   size?: SizeStyle;
+
+  imageDetails?: ImageModel;
 };
 
 export enum AnchorType {
@@ -126,7 +129,6 @@ export type BannerStyles = {
   marginStyle: MarginStyle;
   paddingStyle: PaddingStyle;
   sizeStyle: SizeStyle; // All banners should have a valid size
-  contentPosition: ContentPosition;
 };
 
 export type AlertMandatoryStyle = {

@@ -11,7 +11,6 @@ import {
   ContentPosition,
   ImageStyle,
 } from './BannerStyleTypes';
-import { ImageModel } from './ImageModel';
 
 export type Button = 'button';
 export type Container = 'container';
@@ -29,7 +28,10 @@ export type InsertPositionType = 'top' | 'right' | 'bottom' | 'left';
 // Layout direction of the container. Column is similar to block style and row is similar to flex style.
 export type LayoutDirection = 'row' | 'column';
 
+export type StyleVersion = '0.0.1';
+
 export type ButtonStyle = {
+  version: StyleVersion;
   type: Button;
   displayName: string;
   url?: string;
@@ -48,6 +50,7 @@ export type ButtonStyle = {
 };
 
 export type ContainerStyle = {
+  version: StyleVersion;
   type: Container;
   displayName: string;
   isParentContainer: boolean;
@@ -59,15 +62,16 @@ export type ContainerStyle = {
     marginStyle: MarginStyle;
     paddingStyle: PaddingStyle;
     sizeStyle: SizeStyle;
+    backgroundImageStyle: ImageStyle;
     contentPosition: ContentPosition;
   };
 };
 
 // This refers to the image component that can be added the editor.
 export type ImageComponentStyle = {
+  version: StyleVersion;
   type: Image;
   displayName: string;
-  imageDetails?: ImageModel;
   styles: {
     align?: JustifyStyle;
     fillStyle: FillStyle;

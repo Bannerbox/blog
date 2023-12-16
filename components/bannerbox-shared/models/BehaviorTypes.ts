@@ -10,6 +10,7 @@ export enum BannerBehaviorType {
 }
 
 export enum PlacementType {
+  CUSTOM = 'custom',
   TOP = 'top',
   LEFT = 'left',
   BOTTOM = 'bottom',
@@ -59,10 +60,23 @@ export enum AnimateOnExitType {
   FADE_OUT = 'fade-out',
 }
 
-export type PlacementBehavior = {
+export type GenericPlacement = {
   type: BannerBehaviorType.PlacementBehavior;
   value: PlacementType;
 };
+
+export type HtmlTargetElement = {
+  id: string;
+  value: string;
+};
+
+export type CustomPlacement = {
+  type: BannerBehaviorType.PlacementBehavior;
+  value: PlacementType.CUSTOM;
+  htmlTargetElements: HtmlTargetElement[];
+};
+
+export type PlacementBehavior = GenericPlacement | CustomPlacement;
 
 export type BecomeVisibleBehavior = {
   type: BannerBehaviorType.BecomeVisibleBehavior;

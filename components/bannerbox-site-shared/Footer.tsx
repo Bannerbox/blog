@@ -101,6 +101,9 @@ const Footer = () => {
               <a href="/#value-props">Use Cases</a>
             </div>
             <div>
+              <a href="/pricing">Pricing</a>
+            </div>
+            <div>
               <a href="https://apps.shopify.com/bannerbox" target="_blank">
                 Shopify App
               </a>

@@ -61,7 +61,6 @@ export type BannerTarget = {
   updatedAt: Date;
   organizationId: string;
   matchingPagePath: string;
-  matchingComponentId?: string;
 
   bannerDetailId: string;
 };
@@ -70,7 +69,6 @@ export type BannerTargetCreate = {
   id: string;
   typeName: 'BannerTargetCreate';
   matchingPagePath?: string;
-  matchingComponentId?: string;
 };
 
 export type BannerDetailUpdate = {

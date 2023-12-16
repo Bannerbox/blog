@@ -15,6 +15,9 @@ const styles = css`
     display: flex;
     justify-content: space-between;
     padding-top: 48px;
+    @media (max-width: ${BreakPoints.mobile_414}) {
+      display: block;
+    }
   }
 
   .signup-button {
@@ -33,6 +36,9 @@ const styles = css`
   .header-options {
     display: flex;
     align-items: center;
+    @media (max-width: ${BreakPoints.mobile_414}) {
+      margin-top: 24px;
+    }
   }
   .header-options a {
     color: inherit;
@@ -40,11 +46,6 @@ const styles = css`
   }
   .header-options .option {
     padding-right: 32px;
-  }
-  .docs-link {
-    @media (max-width: ${BreakPoints.mobile_414}) {
-      display: none;
-    }
   }
   .signup-link {
     display: none;
@@ -68,14 +69,17 @@ const Header = () => {
           <span className="docs-link option">
             <Link href="https://www.bannerbox.io/docs">Docs</Link>
           </span>
+          <span className="pricing-link option">
+            <Link href="/pricing">Pricing</Link>
+          </span>
           <span className="option">
-            <Link href="https://www.bannerbox.io/signin">Sign In</Link>
+            <Link href="/signin">Sign In</Link>
           </span>
           <span className="signup-link">
-            <Link href="https://www.bannerbox.io/signup">Sign Up</Link>
+            <Link href="/signup">Sign Up</Link>
           </span>
           <span css={commonBoxShadow} className="signup-button">
-            <Link href="https://www.bannerbox.io/signup">Sign Up</Link>
+            <Link href="/signup">Sign Up</Link>
           </span>
         </div>
       </div>

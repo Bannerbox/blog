@@ -1,4 +1,4 @@
-import { StyleType, SizeUnit, ImageFitStyle } from './BannerStyleTypes';
+import { StyleType, SizeUnit, ImageFitStyle, ImageStyle } from './BannerStyleTypes';
 import { ButtonStyle, ImageComponentStyle, ContainerStyle, LayoutDirection } from './BannerBoxSlate';
 import {
   BorderStyle,
@@ -64,12 +64,32 @@ const RADIUS_STYLE: RadiusStyle = {
   bottomRight: 0,
 };
 
+export const DEFAULT_IMAGE_STYLES: ImageStyle = {
+  type: StyleType.ImageStyle,
+  position: {
+    type: StyleType.PositionStyle,
+    x: {
+      value: 0,
+      unit: SizeUnit.pixels,
+    },
+    y: {
+      value: 0,
+      unit: SizeUnit.pixels,
+    },
+  },
+  fit: ImageFitStyle.contain,
+  altText: '',
+  size: undefined,
+  imageDetails: undefined,
+};
+
 export const createButtonBlockStyle = (): ButtonStyle => {
   const widthValue = 80;
   const heightValue = 20;
   const radiusValue = heightValue * 0.5;
 
   const style: ButtonStyle = {
+    version: '0.0.1',
     type: 'button',
     displayName: 'Button',
     url: undefined,
@@ -122,9 +142,9 @@ export const createButtonBlockStyle = (): ButtonStyle => {
 
 export const createImageBlockStyle = (): ImageComponentStyle => {
   const style: ImageComponentStyle = {
+    version: '0.0.1',
     type: 'image',
     displayName: 'Image',
-    imageDetails: undefined,
     styles: {
       align: undefined,
       fillStyle: FILL_STYLE,
@@ -145,23 +165,7 @@ export const createImageBlockStyle = (): ImageComponentStyle => {
           unit: SizeUnit.percent,
         },
       },
-      imageStyle: {
-        type: StyleType.ImageStyle,
-        position: {
-          type: StyleType.PositionStyle,
-          x: {
-            value: 0,
-            unit: SizeUnit.pixels,
-          },
-          y: {
-            value: 0,
-            unit: SizeUnit.pixels,
-          },
-        },
-        fit: ImageFitStyle.contain,
-        altText: '',
-        size: undefined,
-      },
+      imageStyle: DEFAULT_IMAGE_STYLES,
     },
   };
   return style;
@@ -174,6 +178,7 @@ export const createContainerBlockStyle = (props: {
   const { layoutDirection, isParentContainer } = props;
 
   const style: ContainerStyle = {
+    version: '0.0.1',
     type: 'container',
     displayName: 'Container',
     isParentContainer,
@@ -197,6 +202,7 @@ export const createContainerBlockStyle = (props: {
           unit: SizeUnit.percent,
         },
       },
+      backgroundImageStyle: DEFAULT_IMAGE_STYLES,
       contentPosition: CONTENT_POSITION,
     },
   };
