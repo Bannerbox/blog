@@ -69,7 +69,6 @@ export const getBackgroundImageStyles = ({
     return undefined;
   }
 
-  let backgroundStyles: SerializedStyles | undefined;
   const imageSrc = [getAssetHostUri(), 'images', imageDetails.id, `original.${imageDetails.type}`].join('/');
 
   const containerWidth = containerSize.width;
@@ -97,13 +96,12 @@ export const getBackgroundImageStyles = ({
       xPositionInPixels = xPositionInPixels + xOffset;
       yPositionInPixels = yPositionInPixels + yOffset;
 
-      backgroundStyles = css`
+      return css`
         background-image: url(${imageSrc});
         background-size: ${imageWidth}px ${imageHeight}px;
         background-position: ${xPositionInPixels}px ${yPositionInPixels}px;
         background-repeat: no-repeat;
       `;
-      break;
     }
     // Preserving aspect ratio, resize the image to be as small as possible while ensuring its dimensions are greater than or equal to both those specified.
     case 'outside': {
@@ -117,33 +115,29 @@ export const getBackgroundImageStyles = ({
       xPositionInPixels = xPositionInPixels + xOffset;
       yPositionInPixels = yPositionInPixels + yOffset;
 
-      backgroundStyles = css`
+      return css`
         background-image: url(${imageSrc});
         background-size: ${imageWidth}px ${imageHeight}px;
         background-position: ${xPositionInPixels}px ${yPositionInPixels}px;
         background-repeat: no-repeat;
       `;
-      break;
     }
     case 'fill': {
-      backgroundStyles = css`
+      return css`
         background-image: url(${imageSrc});
         background-size: ${imageWidth}px ${imageHeight}px;
         background-position: ${xPositionInPixels}px ${yPositionInPixels}px;
         background-repeat: no-repeat;
       `;
-      break;
     }
     case 'cover':
     case 'contain':
     default:
-      backgroundStyles = css`
+      return css`
         background-image: url(${imageSrc});
         background-size: ${backgroundImageStyle.fit};
         background-position: ${xPositionInPixels}px ${yPositionInPixels}px;
         background-repeat: no-repeat;
       `;
-      break;
   }
-  return backgroundStyles;
 };

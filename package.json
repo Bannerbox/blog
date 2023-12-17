@@ -20,7 +20,8 @@
     "prismjs": "^1.29.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-helmet": "^6.1.0"
+    "react-helmet": "^6.1.0",
+    "slate": "^0.101.4"
   },
   "devDependencies": {
     "@emotion/babel-plugin": "^11.10.5",
